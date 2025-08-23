@@ -1,0 +1,327 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oficios Córdoba - Servicios Cerca</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="header-text">
+                <h1 id="app-title">🏡 Oficios Córdoba</h1>
+                <p>Encuentra profesionales de confianza cerca de ti.</p>
+            </div>
+            <div class="ad-banner-header">
+                <img src="https://via.placeholder.com/468x60.png?text=Publicidad" alt="Banner de publicidad">
+            </div>
+            <div class="header-controls">
+                 <button id="dark-mode-toggle" class="dark-mode-toggle" title="Alternar modo oscuro">🌙</button>
+                <a href="#" id="register-btn" class="register-button">Anótate como profesional</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+        <main class="container">
+            <div class="ad-banner-top">
+                <img src="https://via.placeholder.com/970x90.png?text=Publicidad+Horizontal" alt="Banner de publicidad">
+            </div>
+
+            <div class="location-tabs">
+                <button class="location-tab active" data-city="Córdoba">Córdoba Capital</button>
+                <button class="location-tab" data-city="Villa Carlos Paz">Villa Carlos Paz</button>
+                <button class="location-tab" data-city="Río Cuarto">Río Cuarto</button>
+                <button class="location-tab" data-city="Villa María">Villa María</button>
+                <button class="location-tab" data-city="San Francisco">San Francisco</button>
+                <button class="location-tab" data-city="Alta Gracia">Alta Gracia</button>
+                <button class="location-tab" data-city="Río Tercero">Río Tercero</button>
+                <button class="location-tab" data-city="La Calera">La Calera</button>
+                <button class="location-tab" data-city="Bell Ville">Bell Ville</button>
+                <button class="location-tab" data-city="Villa Allende">Villa Allende</button>
+                <button class="location-tab" data-city="other">Otras Ciudades</button>
+            </div>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="location-filter">Buscar por barrio o localidad</label>
+                    <input type="text" id="location-filter" placeholder="Ej: Nueva Córdoba">
+                </div>
+                <div class="filter-group">
+                    <label for="category-filter">Categoría de Servicio</label>
+                    <select id="category-filter">
+                        <option value="all">Todas las categorías</option>
+                        <!-- Las categorías se llenarán dinámicamente desde JS -->
+                    </select>
+                </div>
+                 <div class="filter-group admin-only" style="display: none;">
+                    <button id="add-worker-btn" class="admin-button">Agregar Profesional</button>
+                    <button id="logout-btn" class="admin-button logout-button">Cerrar Sesión</button>
+                </div>
+            </div>
+
+            <div class="ad-banner-middle">
+                <img src="https://via.placeholder.com/728x90.png?text=Publicidad+Horizontal" alt="Banner de publicidad">
+            </div>
+
+            <div id="workers-grid" class="workers-grid">
+                <!-- Los perfiles de los trabajadores se insertarán aquí -->
+            </div>
+        </main>
+        <aside class="sidebar-ad">
+            <div class="ad-container">
+                <img src="https://via.placeholder.com/160x600.png?text=Publicidad" alt="Banner de publicidad vertical">
+            </div>
+        </aside>
+    </div>
+
+    <div id="worker-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div id="modal-body">
+                <!-- El perfil detallado del trabajador se insertará aquí -->
+            </div>
+        </div>
+    </div>
+
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button register-close">&times;</span>
+
+            <!-- Step 1: Introduction -->
+            <div id="register-step-1">
+                <h2>Anótate como Profesional en Oficios Córdoba</h2>
+                <p>¡Forma parte de nuestra comunidad y llega a más clientes! El proceso es simple y seguro para garantizar la confianza en nuestra plataforma.</p>
+                <ol class="steps">
+                    <li><strong>Verificación de Identidad:</strong> Para la seguridad de todos, requerimos una foto de tu DNI y una selfie.</li>
+                    <li><strong>Pago de Suscripción:</strong> Un único pago de <strong>ARS $3.000</strong> para activar tu perfil anualmente.</li>
+                    <li><strong>Publicación:</strong> Una vez verificado, tu perfil estará activo y empezarás a recibir consultas.</li>
+                </ol>
+                <p>Presiona "Comenzar Verificación" para iniciar.</p>
+                <button id="start-verification-btn" class="whatsapp-button">Comenzar Verificación</button>
+            </div>
+
+            <!-- Step 2: Verification -->
+            <div id="register-step-2" style="display: none;">
+                <h2>Paso 1: Verificación de Identidad</h2>
+                <p>Por favor, sube una foto clara del frente de tu DNI y una selfie tuya para que podamos verificar tu identidad.</p>
+                <form id="verification-form">
+                    <div class="form-group">
+                        <label for="dni-upload">Foto del frente de tu DNI</label>
+                        <input type="file" id="dni-upload" accept="image/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="selfie-upload">Selfie sosteniendo tu DNI</label>
+                        <input type="file" id="selfie-upload" accept="image/*" required>
+                    </div>
+                    <button type="submit" class="whatsapp-button">Enviar para Verificación</button>
+                </form>
+            </div>
+
+            <!-- Step 3: Payment -->
+            <div id="register-step-3" style="display: none;">
+                <h2>Paso 2: Realizar el Pago</h2>
+                <p>¡Excelente! Tus documentos han sido enviados. El último paso para activar tu perfil es realizar el pago único de <strong>ARS $3.000</strong>.</p>
+                <p>Usa el siguiente botón para pagar de forma segura con Mercado Pago y finalizar tu registro.</p>
+                <button id="mercado-pago-btn" class="whatsapp-button mercado-pago-button">Pagar $3.000 con Mercado Pago</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="admin-login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button admin-login-close">&times;</span>
+            <h2>Acceso Administrador</h2>
+            <p>Ingresa la clave para continuar.</p>
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <label for="admin-password">Clave</label>
+                    <input type="password" id="admin-password" required>
+                </div>
+                <p id="admin-login-error" class="error-message" style="display: none;"></p>
+                <button type="submit" class="whatsapp-button">Ingresar</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="admin-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button admin-close">&times;</span>
+            <h2>Panel de Administración</h2>
+            <form id="admin-form">
+                <input type="hidden" id="worker-id-input">
+                <div class="form-group">
+                    <label for="worker-name">Nombre</label>
+                    <input type="text" id="worker-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="worker-category-input">Categoría</label>
+                    <input type="text" id="worker-category-input" required>
+                </div>
+                 <div class="form-group">
+                    <label for="worker-photo-input">URL de Foto</label>
+                    <input type="text" id="worker-photo-input" placeholder="Ej: /worker1.png" required>
+                </div>
+                <div class="form-group">
+                    <label for="worker-city">Ciudad</label>
+                    <input type="text" id="worker-city" required>
+                </div>
+                 <div class="form-group">
+                    <label for="worker-neighborhood">Barrio</label>
+                    <input type="text" id="worker-neighborhood">
+                </div>
+                <div class="form-group">
+                    <label for="worker-phone">Teléfono (WhatsApp)</label>
+                    <input type="text" id="worker-phone" placeholder="549351..." required>
+                </div>
+                <div class="form-group">
+                    <label for="worker-description">Descripción</label>
+                    <textarea id="worker-description" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="whatsapp-button">Guardar Profesional</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button privacy-close">&times;</span>
+            <div class="privacy-content">
+                <h2>Política de Privacidad</h2>
+                
+                <h3>1. Introducción</h3>
+                <p>En Oficios Córdoba valoramos la privacidad y seguridad de los datos personales de nuestros usuarios. Esta Política de Privacidad describe cómo recopilamos, usamos, protegemos y compartimos la información cuando utilizas nuestra aplicación para ofrecer o contratar servicios profesionales.</p>
+                
+                <h3>2. Datos que recopilamos</h3>
+                <p>Recopilamos los siguientes datos para garantizar la veracidad y seguridad en la prestación de servicios:</p>
+                <ul>
+                    <li><strong>Datos de identidad:</strong> nombre completo, número de DNI (solo el frente) y selfie para verificación biométrica facial.</li>
+                    <li><strong>Datos profesionales:</strong> certificaciones, licencias o acreditaciones requeridas según el tipo de servicio (ej. electricidad, gasista, cerrajería).</li>
+                    <li><strong>Datos de contacto y ubicación</strong> (cuando corresponda).</li>
+                    <li><strong>Información de pago y suscripciones.</strong></li>
+                </ul>
+                
+                <h3>3. Finalidad del tratamiento</h3>
+                <p>Los datos se usan exclusivamente para:</p>
+                <ul>
+                    <li>Verificar la identidad y las habilitaciones profesionales.</li>
+                    <li>Garantizar la seguridad y confianza entre usuarios y profesionales.</li>
+                    <li>Gestionar cobros de suscripciones anuales.</li>
+                    <li>Cumplir obligaciones legales y normativas vigentes.</li>
+                </ul>
+                
+                <h3>4. Seguridad de los datos</h3>
+                <p>Implementamos medidas técnicas y organizativas para proteger tus datos personales, incluyendo:</p>
+                <ul>
+                    <li>Encriptación de datos durante la transmisión y almacenamiento.</li>
+                    <li>Restricción de acceso a personal autorizado.</li>
+                    <li>Protocolos seguros para manejo y protección de la información.</li>
+                    <li>Registro de accesos para auditorías.</li>
+                </ul>
+                
+                <h3>5. Validación de perfiles</h3>
+                <p>Para garantizar la autenticidad, todos los usuarios que ofrecen servicios deben:</p>
+                <ul>
+                    <li>Subir foto frontal del DNI y selfie para cotejo facial.</li>
+                    <li>Adjuntar certificaciones o licencias profesionales si el servicio así lo requiere.</li>
+                    <li>Someterse a procesos de verificación manual o automática.</li>
+                </ul>
+                <p>En caso de incumplimiento, se restringirá el acceso o uso de la plataforma.</p>
+                
+                <h3>6. Derechos del usuario</h3>
+                <p>Tienes derecho a:</p>
+                <ul>
+                    <li>Acceder, rectificar, cancelar u oponerte al tratamiento de tus datos.</li>
+                    <li>Retirar el consentimiento en cualquier momento, informando las consecuencias.</li>
+                    <li>Solicitar la eliminación de tus datos conforme a la ley.</li>
+                </ul>
+                <p>Ejercer estos derechos mediante contacto a <strong>info@oficioscordoba.com</strong>.</p>
+                
+                <h3>7. Responsabilidad</h3>
+                <p>Oficios Córdoba no se hace responsable por la calidad o resultados del servicio ofrecido por profesionales registrados. La responsabilidad recae en el proveedor del servicio según corresponda.</p>
+                
+                <h3>8. Cambios a la política</h3>
+                <p>Esta política puede modificarse ocasionalmente para adaptarse a cambios legales o de nuestro servicio. Notificaremos cualquier cambio importante vía correo electrónico o notificación en la aplicación.</p>
+                
+                <h3>9. Contacto</h3>
+                <p>Para consultas o reclamos relacionados con esta política, puedes contactarnos en: <strong>info@oficioscordoba.com</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="terms-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button terms-close">&times;</span>
+            <div class="privacy-content">
+                <h2>Términos y Condiciones de Uso</h2>
+                
+                <h3>1. Registro y uso de la plataforma</h3>
+                <p>La plataforma Oficios Córdoba está destinada a la inscripción y gestión de profesionales que ofrecen servicios para el hogar en las siguientes categorías: Arreglos de celulares, Arreglos de computadoras, Arreglos de heladera, Arreglos de lavarropa, Carpintería, Cerrajería, Electricidad, Gasista, Herrería, Jardinería, Limpieza, Mecánica, Pintura, Plomería.</p>
+                <p>Para acceder y ofrecer servicios, el profesional debe completar el proceso de alta, proporcionando datos personales y documentación que permita la validación de identidad (frente del DNI y una selfie).</p>
+                
+                <h3>2. Pago de suscripción</h3>
+                <p>El profesional abonará una cuota fija anual para mantener la vigencia de su perfil y poder ofrecer servicios a través de la plataforma. El pago es requisito indispensable para la activación y permanencia en la plataforma. No habrá devoluciones del pago efectuado, salvo disposición expresa de la empresa por motivos excepcionales.</p>
+                
+                <h3>3. Validación y vigencia del perfil</h3>
+                <p>Todo perfil debe validar identidad y, en los casos que lo requieran, acreditar matrícula, licencia o certificación profesional según la especialidad ofrecida. La falta de documentos habilitantes, datos falsos o comportamientos irregulares pueden producir la suspensión o cancelación de la cuenta.</p>
+                
+                <h3>4. Requisitos especiales para Gasistas y Electricistas</h3>
+                <p>Los profesionales que se inscriban como gasistas o electricistas deberán declarar su experiencia laboral previa en el rubro. Es obligatorio adjuntar copia de certificaciones, matrículas, habilitaciones o carnet profesional oficial expedido por la entidad competente. La documentación será revisada y validada antes de habilitar el perfil para ofrecer servicios. La plataforma podrá solicitar la actualización periódica de estas certificaciones. La responsabilidad por el cumplimiento de normativas técnicas y de seguridad es exclusiva del profesional.</p>
+                
+                <h3>5. Uso correcto y responsabilidades</h3>
+                <p>Los profesionales se comprometen a brindar información veraz y actualizada. Las tareas deben ser realizadas con responsabilidad, respetando las leyes y normativas correspondientes a cada actividad profesional. La empresa no interviene en el vínculo contractual entre profesional y cliente, siendo el profesional el único responsable por el servicio brindado.</p>
+                
+                <h3>6. Exclusión y sanciones</h3>
+                <p>El incumplimiento de los Términos y Condiciones puede derivar en advertencias, suspensión temporal o definitiva según la gravedad de la falta. La empresa se reserva el derecho de admisión y permanencia en la plataforma.</p>
+                
+                <h3>7. Modificaciones</h3>
+                <p>Los presentes Términos y Condiciones pueden ser modificados. Las actualizaciones serán notificadas y el uso continuado de la plataforma implica aceptación de las nuevas condiciones.</p>
+                
+                <h3>8. Contacto y soporte</h3>
+                <p>Para consultas, reclamos o información, el profesional podrá comunicarse a través de <strong>info@oficioscordoba.com</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <template id="worker-card-template">
+        <div class="worker-card" role="button" tabindex="0">
+             <div class="admin-controls" style="display: none;">
+                <button class="edit-btn">✏️</button>
+                <button class="delete-btn">🗑️</button>
+            </div>
+            <img src="" alt="Foto de perfil" class="worker-photo">
+            <div class="worker-info">
+                <h3 class="worker-name"></h3>
+                <p class="worker-category"></p>
+                <p class="worker-location"></p>
+                <div class="worker-rating">
+                    <span class="rating-stars"></span>
+                    <span class="rating-reviews"></span>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="data.js"></script>
+    <script type="module" src="app.js"></script>
+
+    <footer>
+        <div class="container">
+            <div class="ad-banner-bottom">
+                 <img src="https://via.placeholder.com/728x90.png?text=Publicidad+Horizontal" alt="Banner de publicidad inferior">
+            </div>
+            <p>&copy; 2024 Oficios Córdoba. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#" id="admin-login-link">Acceso Admin</a> | 
+                <a href="#" id="privacy-policy-link">Políticas de Privacidad</a> |
+                <a href="#" id="terms-link">Términos y Condiciones</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
