@@ -16,14 +16,6 @@ body.dark-mode {
     --shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 
-body.dark-mode .register-button {
-    color: #264653; /* Dark text for contrast on yellow background */
-}
-
-body.dark-mode .register-button:hover {
-    color: white; /* Revert to white on hover when background is dark */
-}
-
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -220,28 +212,6 @@ header p {
     background-color: #c95c3f;
 }
 
-#admin-login-modal .form-group, #verification-form .form-group {
-    text-align: left;
-    margin-bottom: 15px;
-}
-
-.error-message {
-    color: #d90429;
-    font-size: 0.9rem;
-    text-align: left;
-    margin-bottom: 10px;
-}
-
-#register-modal .steps {
-    text-align: left;
-    margin: 20px auto;
-    max-width: 90%;
-}
-
-#register-modal .steps li {
-    margin-bottom: 10px;
-}
-
 .workers-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -350,7 +320,7 @@ header p {
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: var(--card-bg);
     margin: 10% auto;
     padding: 30px;
     border: 1px solid #888;
@@ -359,25 +329,16 @@ header p {
     border-radius: 10px;
     position: relative;
     animation: slideIn 0.3s;
+    color: var(--text-color);
+}
+
+body.dark-mode .modal-content {
+    border: 1px solid #444;
 }
 
 @keyframes slideIn {
     from { transform: translateY(-50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-body.dark-mode .modal-content {
-    background-color: var(--card-bg);
-    color: var(--text-color);
-    border-color: #444;
-}
-
-body.dark-mode input,
-body.dark-mode select,
-body.dark-mode textarea {
-    background-color: #333;
-    color: var(--text-color);
-    border-color: #555;
+    to { opacity: 1; }
 }
 
 .close-button {
@@ -393,15 +354,14 @@ body.dark-mode textarea {
 body.dark-mode .close-button {
     color: #ccc;
 }
+body.dark-mode .close-button:hover,
+body.dark-mode .close-button:focus {
+    color: white;
+}
 
 .close-button:hover,
 .close-button:focus {
     color: black;
-}
-
-body.dark-mode .close-button:hover,
-body.dark-mode .close-button:focus {
-    color: white;
 }
 
 #modal-body {
@@ -442,25 +402,28 @@ body.dark-mode .close-button:focus {
     line-height: 1.7;
 }
 
-.privacy-content {
+.privacy-content, .terms-content {
     text-align: left;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 15px; /* for scrollbar */
 }
 
-.privacy-content h3 {
+.privacy-content h3, .terms-content h3 {
     margin-top: 20px;
     margin-bottom: 10px;
     color: var(--primary-color);
 }
 
-.privacy-content p, .privacy-content ul {
+.privacy-content p, .privacy-content ul, .terms-content p, .terms-content ul {
     margin-bottom: 10px;
 }
 
-.privacy-content ul {
+.privacy-content ul, .terms-content ul {
     padding-left: 20px;
 }
 
-.privacy-content li {
+.privacy-content li, .terms-content li {
     margin-bottom: 5px;
 }
 
@@ -507,8 +470,57 @@ body.dark-mode .close-button:focus {
     margin-bottom: 10px;
 }
 
+#register-modal .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+#register-modal label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+#register-modal input,
+#register-modal textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Important */
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+#register-modal input[type="file"] {
+    padding: 5px;
+}
+
+.verification-section {
+    margin-top: 25px;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px dashed var(--primary-color);
+    border-radius: 8px;
+    background-color: rgba(42, 157, 143, 0.05);
+}
+
+.verification-section h4 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.verification-info {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 15px;
+}
+
 .mercado-pago-button {
     background-color: #009ee3;
+    width: 100%;
+    margin-top: 10px;
+    border: none;
 }
 
 .mercado-pago-button:hover {
@@ -531,29 +543,6 @@ body.dark-mode .close-button:focus {
     background-color: #128C7E;
 }
 
-/* Page Layout for Ad */
-.main-wrapper {
-    display: flex;
-    justify-content: center;
-    max-width: 1400px; /* Wider container for main content + ad */
-    margin: 0 auto;
-}
-
-.main-wrapper > .container {
-    flex-grow: 1;
-}
-
-.sidebar-ad {
-    width: 160px;
-    margin-left: 20px;
-    flex-shrink: 0;
-}
-
-.sidebar-ad .ad-container {
-    position: sticky;
-    top: 20px;
-}
-
 /* Ad Banners */
 .ad-banner-top, .ad-banner-bottom, .ad-banner-middle {
     margin: 20px 0;
@@ -563,6 +552,17 @@ body.dark-mode .close-button:focus {
 .ad-banner-top img, .ad-banner-bottom img, .ad-banner-middle img {
     max-width: 100%;
     height: auto;
+}
+
+.ad-banner-right {
+    position: sticky;
+    top: 20px;
+}
+
+.ad-banner-right img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
 
 footer {
@@ -589,7 +589,38 @@ footer {
 }
 
 @media (max-width: 992px) {
-    .sidebar-ad {
-        display: none;
+    .main-content-wrapper {
+        flex-direction: column;
+    }
+    .sidebar-column {
+        width: 100%;
+        margin-top: 20px;
+    }
+    .ad-banner-right {
+        position: static;
+        text-align: center;
+    }
+    .ad-banner-right img {
+        width: auto;
+        max-width: 100%;
+        max-height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .header-text {
+        text-align: center;
+    }
+    header h1 {
+        font-size: 2rem;
+    }
+    .modal-content {
+        margin: 5% auto;
+        width: 90%;
+        padding: 20px;
     }
 }

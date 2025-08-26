@@ -13,13 +13,12 @@
     <header>
         <div class="container header-content">
             <div class="header-text">
-                <h1 id="app-title">🏡Oficios Cordoba– Trabajadores a tu Alcance</h1>
+                <h1 id="app-title">🏡 Oficios Córdoba</h1>
                 <p>Encuentra profesionales de confianza cerca de ti.</p>
             </div>
             <div class="ad-banner-header">
-    <img src="logo.png" alt="AF Soluciones Integrales" width="468" height="60">
-</div>
-
+                <img src="https://via.placeholder.com/468x60.png?text=Publicidad" alt="Banner de publicidad">
+            </div>
             <div class="header-controls">
                  <button id="dark-mode-toggle" class="dark-mode-toggle" title="Alternar modo oscuro">🌙</button>
                 <a href="#" id="register-btn" class="register-button">Anótate como profesional</a>
@@ -27,58 +26,60 @@
         </div>
     </header>
 
-    <div class="main-wrapper">
-        <main class="container">
-            <div class="ad-banner-top">
-                <img src="https://via.placeholder.com/970x90.png?text=Publicidad+Horizontal" alt="Banner de publicidad">
-            </div>
+    <main class="container">
+        <div class="ad-banner-top">
+            <img src="https://via.placeholder.com/970x90.png?text=Publicidad+Horizontal" alt="Banner de publicidad">
+        </div>
 
-            <div class="location-tabs">
-                <button class="location-tab active" data-city="Córdoba">Córdoba Capital</button>
-                <button class="location-tab" data-city="Villa Carlos Paz">Villa Carlos Paz</button>
-                <button class="location-tab" data-city="Río Cuarto">Río Cuarto</button>
-                <button class="location-tab" data-city="Villa María">Villa María</button>
-                <button class="location-tab" data-city="San Francisco">San Francisco</button>
-                <button class="location-tab" data-city="Alta Gracia">Alta Gracia</button>
-                <button class="location-tab" data-city="Río Tercero">Río Tercero</button>
-                <button class="location-tab" data-city="La Calera">La Calera</button>
-                <button class="location-tab" data-city="Bell Ville">Bell Ville</button>
-                <button class="location-tab" data-city="Villa Allende">Villa Allende</button>
-                <button class="location-tab" data-city="other">Otras Ciudades</button>
-            </div>
+        <div class="location-tabs">
+            <button class="location-tab active" data-city="Córdoba">Córdoba Capital</button>
+            <button class="location-tab" data-city="Villa Carlos Paz">Villa Carlos Paz</button>
+            <button class="location-tab" data-city="Río Cuarto">Río Cuarto</button>
+            <button class="location-tab" data-city="Villa María">Villa María</button>
+            <button class="location-tab" data-city="San Francisco">San Francisco</button>
+            <button class="location-tab" data-city="Alta Gracia">Alta Gracia</button>
+            <button class="location-tab" data-city="Río Tercero">Río Tercero</button>
+            <button class="location-tab" data-city="La Calera">La Calera</button>
+            <button class="location-tab" data-city="Bell Ville">Bell Ville</button>
+            <button class="location-tab" data-city="Villa Allende">Villa Allende</button>
+            <button class="location-tab" data-city="other">Otras Ciudades</button>
+        </div>
 
-            <div class="filters">
-                <div class="filter-group">
-                    <label for="location-filter">Buscar por barrio o localidad</label>
-                    <input type="text" id="location-filter" placeholder="Ej: Nueva Córdoba">
+        <div class="main-content-wrapper">
+            <div class="content-column">
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="location-filter">Buscar por barrio o localidad</label>
+                        <input type="text" id="location-filter" placeholder="Ej: Nueva Córdoba">
+                    </div>
+                    <div class="filter-group">
+                        <label for="category-filter">Categoría de Servicio</label>
+                        <select id="category-filter">
+                            <option value="all">Todas las categorías</option>
+                            <!-- Las categorías se llenarán dinámicamente desde JS -->
+                        </select>
+                    </div>
+                     <div class="filter-group admin-only" style="display: none;">
+                        <button id="add-worker-btn" class="admin-button">Agregar Profesional</button>
+                        <button id="logout-btn" class="admin-button logout-button">Cerrar Sesión</button>
+                    </div>
                 </div>
-                <div class="filter-group">
-                    <label for="category-filter">Categoría de Servicio</label>
-                    <select id="category-filter">
-                        <option value="all">Todas las categorías</option>
-                        <!-- Las categorías se llenarán dinámicamente desde JS -->
-                    </select>
+
+                <div class="ad-banner-middle">
+                    <img src="https://via.placeholder.com/728x90.png?text=Publicidad+Horizontal" alt="Banner de publicidad">
                 </div>
-                 <div class="filter-group admin-only" style="display: none;">
-                    <button id="add-worker-btn" class="admin-button">Agregar Profesional</button>
-                    <button id="logout-btn" class="admin-button logout-button">Cerrar Sesión</button>
+
+                <div id="workers-grid" class="workers-grid">
+                    <!-- Los perfiles de los trabajadores se insertarán aquí -->
                 </div>
             </div>
-
-            <div class="ad-banner-middle">
-                <img src="https://via.placeholder.com/728x90.png?text=Publicidad+Horizontal" alt="Banner de publicidad">
-            </div>
-
-            <div id="workers-grid" class="workers-grid">
-                <!-- Los perfiles de los trabajadores se insertarán aquí -->
-            </div>
-        </main>
-        <aside class="sidebar-ad">
-            <div class="ad-container">
-                <img src="https://via.placeholder.com/160x600.png?text=Publicidad" alt="Banner de publicidad vertical">
-            </div>
-        </aside>
-    </div>
+            <aside class="sidebar-column">
+                <div class="ad-banner-right">
+                    <img src="https://via.placeholder.com/300x600.png?text=Publicidad+Vertical" alt="Banner de publicidad vertical">
+                </div>
+            </aside>
+        </div>
+    </main>
 
     <div id="worker-modal" class="modal">
         <div class="modal-content">
@@ -92,44 +93,59 @@
     <div id="register-modal" class="modal">
         <div class="modal-content">
             <span class="close-button register-close">&times;</span>
+            <h2>Anótate como Profesional en Oficios Córdoba</h2>
+            <p>¡Forma parte de nuestra comunidad y llega a más clientes! Completa el siguiente formulario para crear tu perfil.</p>
+            
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="reg-name">Nombre Completo</label>
+                    <input type="text" id="reg-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-category">Oficio / Categoría</label>
+                    <input type="text" id="reg-category" placeholder="Ej: Plomería, Electricidad" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-phone">Teléfono (WhatsApp)</label>
+                    <input type="tel" id="reg-phone" placeholder="549351..." required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-city">Ciudad</label>
+                    <input type="text" id="reg-city" placeholder="Ej: Córdoba Capital" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-neighborhood">Barrio (Opcional)</label>
+                    <input type="text" id="reg-neighborhood" placeholder="Ej: Nueva Córdoba">
+                </div>
+                 <div class="form-group">
+                    <label for="reg-photo">Foto de Perfil</label>
+                    <input type="file" id="reg-photo" accept="image/*" required>
+                </div>
+                 <div class="form-group">
+                    <label for="reg-local-photo">Foto de tu Local (Opcional)</label>
+                    <input type="file" id="reg-local-photo" accept="image/*">
+                </div>
+                 <div class="form-group">
+                    <label for="reg-description">Descripción de tus servicios</label>
+                    <textarea id="reg-description" rows="4" required></textarea>
+                </div>
 
-            <!-- Step 1: Introduction -->
-            <div id="register-step-1">
-                <h2>Anótate como Profesional en Oficios Córdoba</h2>
-                <p>¡Forma parte de nuestra comunidad y llega a más clientes! El proceso es simple y seguro para garantizar la confianza en nuestra plataforma.</p>
-                <ol class="steps">
-                    <li><strong>Verificación de Identidad:</strong> Para la seguridad de todos, requerimos una foto de tu DNI y una selfie.</li>
-                    <li><strong>Pago de Suscripción:</strong> Un único pago de <strong>ARS $3.000</strong> para activar tu perfil anualmente.</li>
-                    <li><strong>Publicación:</strong> Una vez verificado, tu perfil estará activo y empezarás a recibir consultas.</li>
-                </ol>
-                <p>Presiona "Comenzar Verificación" para iniciar.</p>
-                <button id="start-verification-btn" class="whatsapp-button">Comenzar Verificación</button>
-            </div>
-
-            <!-- Step 2: Verification -->
-            <div id="register-step-2" style="display: none;">
-                <h2>Paso 1: Verificación de Identidad</h2>
-                <p>Por favor, sube una foto clara del frente de tu DNI y una selfie tuya para que podamos verificar tu identidad.</p>
-                <form id="verification-form">
+                <div class="verification-section">
+                    <h4>Verificación de Identidad (Obligatorio)</h4>
+                    <p class="verification-info">Para seguridad de todos, requerimos una verificación. Tus datos son privados y no se compartirán en tu perfil público.</p>
                     <div class="form-group">
-                        <label for="dni-upload">Foto del frente de tu DNI</label>
-                        <input type="file" id="dni-upload" accept="image/*" required>
+                        <label for="reg-dni">Foto del frente de tu DNI</label>
+                        <input type="file" id="reg-dni" accept="image/*" required>
                     </div>
                     <div class="form-group">
-                        <label for="selfie-upload">Selfie sosteniendo tu DNI</label>
-                        <input type="file" id="selfie-upload" accept="image/*" required>
+                        <label for="reg-selfie">Tómate una Selfie (para verificación)</label>
+                        <input type="file" id="reg-selfie" accept="image/*" capture="user" required>
                     </div>
-                    <button type="submit" class="whatsapp-button">Enviar para Verificación</button>
-                </form>
-            </div>
-
-            <!-- Step 3: Payment -->
-            <div id="register-step-3" style="display: none;">
-                <h2>Paso 2: Realizar el Pago</h2>
-                <p>¡Excelente! Tus documentos han sido enviados. El último paso para activar tu perfil es realizar el pago único de <strong>ARS $3.000</strong>.</p>
-                <p>Usa el siguiente botón para pagar de forma segura con Mercado Pago y finalizar tu registro.</p>
-                <button id="mercado-pago-btn" class="whatsapp-button mercado-pago-button">Pagar $3.000 con Mercado Pago</button>
-            </div>
+                </div>
+                
+                <p>Una vez completes tu perfil, realiza un único pago de <strong>ARS $5.000</strong> para activarlo y empezar a recibir consultas.</p>
+                <button type="submit" id="mercado-pago-btn" class="whatsapp-button mercado-pago-button">Pagar $5.000 y Registrarse</button>
+            </form>
         </div>
     </div>
 
@@ -195,7 +211,7 @@
                 <h2>Política de Privacidad</h2>
                 
                 <h3>1. Introducción</h3>
-                <p>En Oficios Cordoba – Trabajadores a tu Alcance valoramos la privacidad y seguridad de los datos personales de nuestros usuarios. Esta Política de Privacidad describe cómo recopilamos, usamos, protegemos y compartimos la información cuando utilizas nuestra aplicación para ofrecer o contratar servicios profesionales.</p>
+                <p>En Oficios Córdoba valoramos la privacidad y seguridad de los datos personales de nuestros usuarios. Esta Política de Privacidad describe cómo recopilamos, usamos, protegemos y compartimos la información cuando utilizas nuestra aplicación para ofrecer o contratar servicios profesionales.</p>
                 
                 <h3>2. Datos que recopilamos</h3>
                 <p>Recopilamos los siguientes datos para garantizar la veracidad y seguridad en la prestación de servicios:</p>
@@ -243,7 +259,7 @@
                 <p>Ejercer estos derechos mediante contacto a <strong>info@oficioscordoba.com</strong>.</p>
                 
                 <h3>7. Responsabilidad</h3>
-                <p>Oficios Cordoba – Trabajadores a tu Alcance no se hace responsable por la calidad o resultados del servicio ofrecido por profesionales registrados. La responsabilidad recae en el proveedor del servicio según corresponda.</p>
+                <p>Oficios Córdoba no se hace responsable por la calidad o resultados del servicio ofrecido por profesionales registrados. La responsabilidad recae en el proveedor del servicio según corresponda.</p>
                 
                 <h3>8. Cambios a la política</h3>
                 <p>Esta política puede modificarse ocasionalmente para adaptarse a cambios legales o de nuestro servicio. Notificaremos cualquier cambio importante vía correo electrónico o notificación en la aplicación.</p>
@@ -257,11 +273,11 @@
     <div id="terms-modal" class="modal">
         <div class="modal-content">
             <span class="close-button terms-close">&times;</span>
-            <div class="privacy-content">
+            <div class="terms-content">
                 <h2>Términos y Condiciones de Uso</h2>
                 
                 <h3>1. Registro y uso de la plataforma</h3>
-                <p>La plataforma ServiHogar – Trabajadores a tu Alcance está destinada a la inscripción y gestión de profesionales que ofrecen servicios para el hogar en las siguientes categorías: Arreglos de celulares, Arreglos de computadoras, Arreglos de heladera, Arreglos de lavarropa, Carpintería, Cerrajería, Electricidad, Gasista, Herrería, Jardinería, Limpieza, Mecánica, Pintura, Plomería.</p>
+                <p>La plataforma Oficios Córdoba está destinada a la inscripción y gestión de profesionales que ofrecen servicios para el hogar en las siguientes categorías: Arreglos de celulares, Arreglos de computadoras, Arreglos de heladera, Arreglos de lavarropa, Carpintería, Cerrajería, Electricidad, Gasista, Herrería, Jardinería, Limpieza, Mecánica, Pintura, Plomería.</p>
                 <p>Para acceder y ofrecer servicios, el profesional debe completar el proceso de alta, proporcionando datos personales y documentación que permita la validación de identidad (frente del DNI y una selfie).</p>
                 
                 <h3>2. Pago de suscripción</h3>
@@ -283,7 +299,7 @@
                 <p>Los presentes Términos y Condiciones pueden ser modificados. Las actualizaciones serán notificadas y el uso continuado de la plataforma implica aceptación de las nuevas condiciones.</p>
                 
                 <h3>8. Contacto y soporte</h3>
-                <p>Para consultas, reclamos o información, el profesional podrá comunicarse a través de <strong>info@oficioscordoba.com</strong>.</p>
+                <p>Para consultas, reclamos o información, el profesional podrá comunicarse a través de info@oficioscordoba.com.</p>
             </div>
         </div>
     </div>
@@ -315,7 +331,7 @@
             <div class="ad-banner-bottom">
                  <img src="https://via.placeholder.com/728x90.png?text=Publicidad+Horizontal" alt="Banner de publicidad inferior">
             </div>
-            <p>&copy; 2024 Oficios Córdoba. Todos los derechos reservados.</p>
+            <p>&copy; 2025 Oficios Córdoba. Todos los derechos reservados.</p>
             <div class="footer-links">
                 <a href="#" id="admin-login-link">Acceso Admin</a> | 
                 <a href="#" id="privacy-policy-link">Políticas de Privacidad</a> |

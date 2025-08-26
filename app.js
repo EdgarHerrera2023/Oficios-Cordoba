@@ -14,11 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const registerModal = document.getElementById('register-modal');
     const closeRegisterModalBtn = registerModal.querySelector('.register-close');
     const mercadoPagoBtn = document.getElementById('mercado-pago-btn');
-    const registerStep1 = document.getElementById('register-step-1');
-    const registerStep2 = document.getElementById('register-step-2');
-    const registerStep3 = document.getElementById('register-step-3');
-    const startVerificationBtn = document.getElementById('start-verification-btn');
-    const verificationForm = document.getElementById('verification-form');
+    const registerForm = document.getElementById('register-form');
 
     // Admin functionality
     const appTitle = document.getElementById('app-title');
@@ -379,9 +375,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Register Modal Logic
     registerBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        registerStep1.style.display = 'block';
-        registerStep2.style.display = 'none';
-        registerStep3.style.display = 'none';
         registerModal.style.display = 'block';
     });
 
@@ -389,26 +382,38 @@ document.addEventListener('DOMContentLoaded', () => {
         registerModal.style.display = 'none';
     });
 
-    startVerificationBtn.addEventListener('click', () => {
-        registerStep1.style.display = 'none';
-        registerStep2.style.display = 'block';
-    });
-
-    verificationForm.addEventListener('submit', (e) => {
+    registerForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        // Here you would typically handle file uploads to a server
-        console.log('DNI file:', document.getElementById('dni-upload').files[0]);
-        console.log('Selfie file:', document.getElementById('selfie-upload').files[0]);
+        // Here you would typically collect the form data
+        const registrationData = {
+            name: document.getElementById('reg-name').value,
+            category: document.getElementById('reg-category').value,
+            phone: document.getElementById('reg-phone').value,
+            city: document.getElementById('reg-city').value,
+            neighborhood: document.getElementById('reg-neighborhood').value,
+            description: document.getElementById('reg-description').value,
+            // For file inputs, we can get file info. Actual upload would need a server.
+            profilePhoto: document.getElementById('reg-photo').files[0],
+            localPhoto: document.getElementById('reg-local-photo').files[0],
+            dniPhoto: document.getElementById('reg-dni').files[0],
+            selfie: document.getElementById('reg-selfie').files[0],
+        };
+        console.log("Datos de registro:", registrationData);
+
+        alert('¡Gracias por tu interés! Tus datos fueron recibidos. El siguiente paso sería el pago con Mercado Pago, cuya integración está en desarrollo. ¡Vuelve pronto!');
         
-        alert('Documentos enviados para verificación. Por favor, completa el pago para finalizar.');
-        
-        registerStep2.style.display = 'none';
-        registerStep3.style.display = 'block';
+        registerForm.reset();
+        registerModal.style.display = 'none';
     });
 
-    mercadoPagoBtn.addEventListener('click', () => {
-        alert('Gracias por tu interés. La pasarela de pago de Mercado Pago se encuentra en desarrollo. ¡Vuelve pronto!');
-        registerModal.style.display = 'none';
+    mercadoPagoBtn.addEventListener('click', (e) => {
+        // Prevent form submission if the button is of type submit
+        if (registerForm.checkValidity()) {
+             alert('Gracias por tu interés. La pasarela de pago de Mercado Pago se encuentra en desarrollo. ¡Vuelve pronto!');
+        } else {
+            // Let the browser show validation errors
+            // We do nothing here so the 'submit' event can trigger native validation.
+        }
     });
 
     // Privacy Policy Logic
