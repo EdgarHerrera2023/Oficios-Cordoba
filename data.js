@@ -107,11 +107,11 @@ const workers = [
   },
   {
     id: 8,
-    name: "",
+    name: "Ricardo Juarez",
     photo: "worker8.png",
     category: "Arreglos de heladera",
     location: {
-      city: "Córdoba",
+      city: "Río Cuarto",
       province: "Córdoba"
     },
     description: "Técnico especializado en refrigeración. Reparación de heladeras familiares y comerciales, freezers y exhibidoras. Carga de gas, cambio de motor y repuestos originales. Garantía en todos los trabajos.",
@@ -166,7 +166,7 @@ const workers = [
   {
     id: 12,
     name: "Valeria Ponce",
-    photo: "worker14.png",
+    photo: "worker8.png",
     category: "Arreglos de lavarropa",
     location: {
       city: "Córdoba",
@@ -193,22 +193,6 @@ const workers = [
     phone: "5493514455668",
     rating: 4.9,
     reviews: 53,
-    isAnonymous: true
-  },
-  {
-    id: 14,
-    name: "Laura Nuñez",
-    photo: "worker13.png",
-    category: "Arreglos de celulares",
-    location: {
-      city: "Córdoba",
-      province: "Córdoba",
-      neighborhood: "Nueva Córdoba"
-    },
-    description: "Técnica especializada en reparación de celulares y tablets. Cambio de pantallas, baterías, pines de carga y reparación de placas. Presupuestos sin cargo en el acto. Local en Nueva Córdoba.",
-    phone: "5493515566779",
-    rating: 4.9,
-    reviews: 91,
     isAnonymous: true
   }
 ];
